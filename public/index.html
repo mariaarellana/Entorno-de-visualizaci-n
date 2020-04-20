@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script async defer src="./consulta.js"></script>
     <title>Pasta Type Detector</title>
   </head>
   <body>
@@ -24,6 +27,43 @@
       });
     </script>
     <h1>Welcome to recognition</h1>
+    
+    <aside
+      id="selec_date_in"
+      action="../../form-result.php"
+      method="post"
+      target="_blank"
+    >
+      <div>
+        <h6 id="title">Seleccione la fecha de inicio</h6>
+        <input
+          id="init-date"
+          type="datetime-local"
+          name="fechaesperada"
+          value="2020-04-18T00:00"
+          min="2020-04-18T00:00"
+          max="2020-06-30T00:00"
+        />
+      </div>
+      <div>
+        <h6>Seleccione la fecha final</h6>
+        <input
+          id="final-date"
+          type="datetime-local"
+          name="fechaesperada"
+          value="2020-04-18T00:00"
+          min="2020-04-18T00:00"
+          max="2020-06-30T00:00"
+        />
+      </div>
+      <input
+        id="Consultar"
+        type="button"
+        value="Consulta"
+        class="btn btn-info"
+      />
+    </aside>
+    
     <img style="-webkit-user-select: none;" src="http://localhost:3456/video_feed"></img>
   </body>
 </html>

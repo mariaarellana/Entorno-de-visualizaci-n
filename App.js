@@ -3,8 +3,17 @@ const socketIO = require("socket.io");
 const http = require("http");
 let bodyParser = require("body-parser");
 const path = require("path");
+const mysql = require("mysql");
 
 const app = express();
+
+// DATABASE CONNECTION
+const dbCon = {
+  host: "database-1.coxt8euwrxba.us-east-1.rds.amazonaws.com",
+  user: "admin",
+  password: "carpediem0599",
+  database: "database-1",
+};
 
 // JSON PARSER
 app.use(
@@ -63,6 +72,22 @@ io.on("connect", (client) => {
     client.broadcast.emit("ScoreData", ScoresDb);
   });
 });
+
+const search = (request, response) => {
+  const con = mysql.createConnection(dbCon);
+  con.connect();
+  const sql = `SELECT classes AS classes, scores AS scores, datetime AS datetime 
+              FROM database1
+              WHERE datetime BETWEEN ${request.query.initTime} and ${request.query.finalTime};`;
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    response.json(result);
+  });
+  con.end();
+};
+
+app.get("/search", search);
 
 // Server listen port
 server.listen(port, () => {
