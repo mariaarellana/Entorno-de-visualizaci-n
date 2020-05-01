@@ -46,23 +46,38 @@ io.on("connect", (client) => {
   client.on("ClassData", (classesDb) => {
     // Conversion Int to Class
     if (classesDb == 1) {
-      classesDb = "arveja";
+      classesDb = "Bandeja";
     }
     if (classesDb == 2) {
-      classesDb = "frijol";
+      classesDb = "Penne Bueno";
     }
     {
       if (classesDb == 3) {
-        classesDb = "papa";
+        classesDb = "Penne Malo";
       }
       if (classesDb == 4) {
-        classesDb = "pimenton";
+        classesDb = "Tornillo Bueno";
       }
       if (classesDb == 5) {
-        classesDb = "zanahoria";
+        classesDb = "Tornillo Malo";
       }
       if (classesDb == 6) {
-        classesDb = "zaragoza";
+        classesDb = "Codo Bueno";
+      }
+      if (classesDb == 7) {
+        classesDb = "Codo Malo";
+      }
+      if (classesDb == 8) {
+        classesDb = "Spaghetti Bueno";
+      }
+      if (classesDb == 9) {
+        classesDb = "Spaghetti Malo";
+      }
+      if (classesDb == 10) {
+        classesDb = "Concha Buena";
+      }
+      if (classesDb == 11) {
+        classesDb = "Concha Mala";
       }
     }
     client.broadcast.emit("ClassData", classesDb);
