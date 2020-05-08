@@ -38,12 +38,8 @@ io.on("connect", (client) => {
     console.log("usuario desconectado");
   });
 
-  client.on("StreamVideo", (frame) => {
-    console.log("transmision de video Activa");
-    client.broadcast.emit("StreamVideo", frame);
-  });
-
   client.on("ClassData", (classesDb) => {
+    // Conversion Int to Class
     // Conversion Int to Class
     if (classesDb == 1) {
       classesDb = "Bandeja";
@@ -86,12 +82,16 @@ io.on("connect", (client) => {
   client.on("ScoreData", (ScoresDb) => {
     client.broadcast.emit("ScoreData", ScoresDb);
   });
+
+  client.on("formattime", (formatTime) => {
+    client.broadcast.emit("formattime", formatTime);
+  });
 });
 
 const search = (request, response) => {
   const con = mysql.createConnection(dbCon);
   con.connect();
-  const sql = `SELECT classes AS classes, scores AS scores, datetime AS datetime 
+  const sql = `SELECT classes AS classes, scores AS scores, formatTime AS formatTime 
               FROM database1
               WHERE datetime BETWEEN ${request.query.initTime} and ${request.query.finalTime};`;
   con.query(sql, function (err, result) {
